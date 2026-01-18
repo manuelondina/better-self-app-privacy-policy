@@ -1,560 +1,645 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
     <title>Better Self App – Legal & Policy Center</title>
     <style>
-        :root {
-            --bg-gradient: radial-gradient(circle at top left, #38bdf8 0, #0f172a 45%, #020617 100%);
-            --card-bg: rgba(15, 23, 42, 0.9);
-            --card-border: rgba(148, 163, 184, 0.35);
-            --accent: #38bdf8;
-            --accent-soft: rgba(56, 189, 248, 0.18);
-            --text-main: #0f172a;
-            --text-muted: #6b7280;
-            --surface: rgba(15, 23, 42, 0.92);
-            --shadow-soft: 0 24px 80px rgba(15, 23, 42, 0.75);
-            --radius-xl: 24px;
-            --radius-lg: 18px;
-            --radius-full: 999px;
-        }
+      :root {
+        --bg-gradient: radial-gradient(
+          circle at top left,
+          #38bdf8 0,
+          #0f172a 45%,
+          #020617 100%
+        );
+        --card-bg: rgba(15, 23, 42, 0.9);
+        --card-border: rgba(148, 163, 184, 0.35);
+        --accent: #38bdf8;
+        --accent-soft: rgba(56, 189, 248, 0.18);
+        --text-main: #0f172a;
+        --text-muted: #6b7280;
+        --surface: rgba(15, 23, 42, 0.92);
+        --shadow-soft: 0 24px 80px rgba(15, 23, 42, 0.75);
+        --radius-xl: 24px;
+        --radius-lg: 18px;
+        --radius-full: 999px;
+      }
 
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            font-family: -apple-system, BlinkMacSystemFont, system-ui, -system-ui, "San Francisco", "Segoe UI", Roboto, sans-serif;
-            color: #e5e7eb;
-            background: var(--bg-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 24px 16px;
-        }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family:
+          -apple-system,
+          BlinkMacSystemFont,
+          system-ui,
+          -system-ui,
+          "San Francisco",
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        color: #e5e7eb;
+        background: var(--bg-gradient);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px 16px;
+      }
 
+      .page {
+        width: 100%;
+        max-width: 1040px;
+        background: linear-gradient(
+          135deg,
+          rgba(15, 23, 42, 0.96),
+          rgba(15, 23, 42, 0.88)
+        );
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-soft);
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        padding: 28px 24px 22px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .page::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(56, 189, 248, 0.22),
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at bottom right,
+            rgba(59, 130, 246, 0.16),
+            transparent 55%
+          );
+        opacity: 0.9;
+        pointer-events: none;
+      }
+
+      .page-inner {
+        position: relative;
+        z-index: 1;
+      }
+
+      .top-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 24px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .logo-wrap {
+        width: 52px;
+        height: 52px;
+        border-radius: 20px;
+        background:
+          linear-gradient(135deg, rgba(15, 23, 42, 1), rgba(15, 23, 42, 0.9)),
+          radial-gradient(
+            circle at 0 0,
+            rgba(248, 250, 252, 0.16),
+            transparent 60%
+          );
+        border: 1px solid rgba(148, 163, 184, 0.45);
+        box-shadow:
+          0 18px 45px rgba(15, 23, 42, 0.92),
+          0 0 0 1px rgba(15, 23, 42, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .logo-wrap::before {
+        content: "BS";
+        font-size: 14px;
+        font-weight: 650;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(248, 250, 252, 0.72);
+      }
+
+      .logo {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 10px 20px rgba(15, 23, 42, 0.8));
+      }
+
+      .logo-loaded .logo-wrap::before {
+        content: "";
+      }
+
+      .brand-text h1 {
+        margin: 0 0 4px;
+        font-size: clamp(1.4rem, 1.7rem, 1.9rem);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #f9fafb;
+      }
+
+      .subtitle {
+        margin: 0;
+        font-size: 0.85rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #9ca3af;
+      }
+
+      .badge {
+        padding: 6px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.65);
+        background: radial-gradient(
+          circle at top left,
+          rgba(56, 189, 248, 0.18),
+          transparent 60%
+        );
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #e5e7eb;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        backdrop-filter: blur(18px);
+      }
+
+      .badge-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: #22c55e;
+        box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.3);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2.6fr);
+        gap: 28px;
+        align-items: flex-start;
+        margin-bottom: 26px;
+      }
+
+      .intro {
+        max-width: 520px;
+      }
+
+      .intro h2 {
+        margin: 0 0 10px;
+        font-size: clamp(1.3rem, 1.45rem, 1.55rem);
+        color: #e5e7eb;
+      }
+
+      .intro p {
+        margin: 0 0 8px;
+        font-size: 0.95rem;
+        color: #cbd5f5;
+      }
+
+      .meta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+        font-size: 0.8rem;
+        color: #9ca3af;
+        margin-top: 10px;
+      }
+
+      .meta-label {
+        opacity: 0.85;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.5);
+        background: rgba(15, 23, 42, 0.85);
+        font-size: 0.75rem;
+        color: #e5e7eb;
+      }
+
+      .chip-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: var(--accent);
+      }
+
+      .panel {
+        border-radius: var(--radius-lg);
+        border: 1px solid rgba(148, 163, 184, 0.5);
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(56, 189, 248, 0.16),
+            transparent 60%
+          ),
+          rgba(15, 23, 42, 0.94);
+        padding: 14px 16px 14px;
+        backdrop-filter: blur(20px);
+      }
+
+      .panel h3 {
+        margin: 0 0 8px;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: #d1d5db;
+      }
+
+      .panel p {
+        margin: 0 0 10px;
+        font-size: 0.82rem;
+        color: #cbd5f5;
+      }
+
+      .panel ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 6px;
+      }
+
+      .panel li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.8rem;
+        color: #9ca3af;
+      }
+
+      .panel li::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: rgba(148, 163, 184, 0.9);
+      }
+
+      .docs-section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .docs-section-header h2 {
+        margin: 0;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: #d1d5db;
+      }
+
+      .docs-hint {
+        margin: 0;
+        font-size: 0.8rem;
+        color: #9ca3af;
+      }
+
+      .docs-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .doc-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 6px;
+        padding: 14px 14px 12px;
+        border-radius: 18px;
+        text-decoration: none;
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(56, 189, 248, 0.22),
+            transparent 60%
+          ),
+          rgba(15, 23, 42, 0.96);
+        border: 1px solid rgba(148, 163, 184, 0.5);
+        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.85);
+        color: #e5e7eb;
+        overflow: hidden;
+        transition:
+          transform 0.18s ease-out,
+          box-shadow 0.18s ease-out,
+          border-color 0.18s ease-out,
+          background 0.18s ease-out,
+          translate 0.18s ease-out;
+      }
+
+      .doc-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at top right,
+          rgba(59, 130, 246, 0.3),
+          transparent 55%
+        );
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.18s ease-out;
+      }
+
+      .doc-card:hover,
+      .doc-card:focus-visible {
+        transform: translateY(-4px);
+        border-color: rgba(56, 189, 248, 0.8);
+        box-shadow: 0 28px 65px rgba(15, 23, 42, 0.95);
+        outline: none;
+      }
+
+      .doc-card:hover::before,
+      .doc-card:focus-visible::before {
+        opacity: 1;
+      }
+
+      .doc-title {
+        margin: 0;
+        font-size: 0.95rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .doc-kicker {
+        margin: 0;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: rgba(148, 163, 184, 0.95);
+      }
+
+      .doc-desc {
+        margin: 2px 0 0;
+        font-size: 0.8rem;
+        color: #cbd5f5;
+      }
+
+      .doc-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 8px;
+        font-size: 0.75rem;
+        color: rgba(148, 163, 184, 0.95);
+      }
+
+      .pill {
+        padding: 2px 9px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        background: rgba(15, 23, 42, 0.9);
+      }
+
+      .arrow {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.92);
+        border: 1px solid rgba(148, 163, 184, 0.7);
+        font-size: 0.85rem;
+      }
+
+      .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 18px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(148, 163, 184, 0.4);
+        font-size: 0.8rem;
+        color: #9ca3af;
+      }
+
+      .footer a {
+        color: #e5e7eb;
+        text-decoration: none;
+        border-bottom: 1px dotted rgba(148, 163, 184, 0.7);
+      }
+
+      .footer a:hover {
+        color: #f9fafb;
+        border-bottom-style: solid;
+      }
+
+      @media (max-width: 840px) {
         .page {
-            width: 100%;
-            max-width: 1040px;
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.88));
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-soft);
-            border: 1px solid rgba(148, 163, 184, 0.35);
-            padding: 28px 24px 22px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .page::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(circle at top left, rgba(56, 189, 248, 0.22), transparent 55%),
-                radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.16), transparent 55%);
-            opacity: 0.9;
-            pointer-events: none;
-        }
-
-        .page-inner {
-            position: relative;
-            z-index: 1;
-        }
-
-        .top-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 18px;
-            margin-bottom: 24px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .logo-wrap {
-            width: 52px;
-            height: 52px;
-            border-radius: 20px;
-            background:
-                linear-gradient(135deg, rgba(15, 23, 42, 1), rgba(15, 23, 42, 0.9)),
-                radial-gradient(circle at 0 0, rgba(248, 250, 252, 0.16), transparent 60%);
-            border: 1px solid rgba(148, 163, 184, 0.45);
-            box-shadow:
-                0 18px 45px rgba(15, 23, 42, 0.92),
-                0 0 0 1px rgba(15, 23, 42, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .logo-wrap::before {
-            content: "BS";
-            font-size: 14px;
-            font-weight: 650;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: rgba(248, 250, 252, 0.72);
-        }
-
-        .logo {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 10px 20px rgba(15, 23, 42, 0.8));
-        }
-
-        .logo-loaded .logo-wrap::before {
-            content: "";
-        }
-
-        .brand-text h1 {
-            margin: 0 0 4px;
-            font-size: clamp(1.4rem, 1.7rem, 1.9rem);
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: #f9fafb;
-        }
-
-        .subtitle {
-            margin: 0;
-            font-size: 0.85rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: #9ca3af;
-        }
-
-        .badge {
-            padding: 6px 14px;
-            border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, 0.65);
-            background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 60%);
-            font-size: 0.75rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: #e5e7eb;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            backdrop-filter: blur(18px);
-        }
-
-        .badge-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 999px;
-            background: #22c55e;
-            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.3);
+          border-radius: 20px;
+          padding: 22px 18px 18px;
         }
 
         .hero {
-            display: grid;
-            grid-template-columns: minmax(0, 3fr) minmax(0, 2.6fr);
-            gap: 28px;
-            align-items: flex-start;
-            margin-bottom: 26px;
-        }
-
-        .intro {
-            max-width: 520px;
-        }
-
-        .intro h2 {
-            margin: 0 0 10px;
-            font-size: clamp(1.3rem, 1.45rem, 1.55rem);
-            color: #e5e7eb;
-        }
-
-        .intro p {
-            margin: 0 0 8px;
-            font-size: 0.95rem;
-            color: #cbd5f5;
-        }
-
-        .meta-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px 18px;
-            font-size: 0.8rem;
-            color: #9ca3af;
-            margin-top: 10px;
-        }
-
-        .meta-label {
-            opacity: 0.85;
-        }
-
-        .chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 10px;
-            border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, 0.5);
-            background: rgba(15, 23, 42, 0.85);
-            font-size: 0.75rem;
-            color: #e5e7eb;
-        }
-
-        .chip-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 999px;
-            background: var(--accent);
-        }
-
-        .panel {
-            border-radius: var(--radius-lg);
-            border: 1px solid rgba(148, 163, 184, 0.5);
-            background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 60%),
-                        rgba(15, 23, 42, 0.94);
-            padding: 14px 16px 14px;
-            backdrop-filter: blur(20px);
-        }
-
-        .panel h3 {
-            margin: 0 0 8px;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.14em;
-            color: #d1d5db;
-        }
-
-        .panel p {
-            margin: 0 0 10px;
-            font-size: 0.82rem;
-            color: #cbd5f5;
-        }
-
-        .panel ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: grid;
-            gap: 6px;
-        }
-
-        .panel li {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.8rem;
-            color: #9ca3af;
-        }
-
-        .panel li::before {
-            content: "";
-            width: 6px;
-            height: 6px;
-            border-radius: 999px;
-            background: rgba(148, 163, 184, 0.9);
-        }
-
-        .docs-section-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-
-        .docs-section-header h2 {
-            margin: 0;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 0.16em;
-            color: #d1d5db;
-        }
-
-        .docs-hint {
-            margin: 0;
-            font-size: 0.8rem;
-            color: #9ca3af;
+          grid-template-columns: minmax(0, 1fr);
+          gap: 18px;
         }
 
         .docs-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 14px;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 640px) {
+        body {
+          padding: 18px 10px;
         }
 
-        .doc-card {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 6px;
-            padding: 14px 14px 12px;
-            border-radius: 18px;
-            text-decoration: none;
-            background:
-                radial-gradient(circle at top left, rgba(56, 189, 248, 0.22), transparent 60%),
-                rgba(15, 23, 42, 0.96);
-            border: 1px solid rgba(148, 163, 184, 0.5);
-            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.85);
-            color: #e5e7eb;
-            overflow: hidden;
-            transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, border-color 0.18s ease-out, background 0.18s ease-out, translate 0.18s ease-out;
+        .page {
+          padding: 18px 14px 14px;
         }
 
-        .doc-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.3), transparent 55%);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.18s ease-out;
+        .top-bar {
+          flex-direction: column;
+          align-items: flex-start;
         }
 
-        .doc-card:hover,
-        .doc-card:focus-visible {
-            transform: translateY(-4px);
-            border-color: rgba(56, 189, 248, 0.8);
-            box-shadow: 0 28px 65px rgba(15, 23, 42, 0.95);
-            outline: none;
-        }
-
-        .doc-card:hover::before,
-        .doc-card:focus-visible::before {
-            opacity: 1;
-        }
-
-        .doc-title {
-            margin: 0;
-            font-size: 0.95rem;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-        }
-
-        .doc-kicker {
-            margin: 0;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.14em;
-            color: rgba(148, 163, 184, 0.95);
-        }
-
-        .doc-desc {
-            margin: 2px 0 0;
-            font-size: 0.8rem;
-            color: #cbd5f5;
-        }
-
-        .doc-meta {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            margin-top: 8px;
-            font-size: 0.75rem;
-            color: rgba(148, 163, 184, 0.95);
-        }
-
-        .pill {
-            padding: 2px 9px;
-            border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, 0.6);
-            background: rgba(15, 23, 42, 0.9);
-        }
-
-        .arrow {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 22px;
-            height: 22px;
-            border-radius: 999px;
-            background: rgba(15, 23, 42, 0.92);
-            border: 1px solid rgba(148, 163, 184, 0.7);
-            font-size: 0.85rem;
+        .docs-grid {
+          grid-template-columns: minmax(0, 1fr);
         }
 
         .footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            margin-top: 18px;
-            padding-top: 12px;
-            border-top: 1px solid rgba(148, 163, 184, 0.4);
-            font-size: 0.8rem;
-            color: #9ca3af;
+          flex-direction: column;
+          align-items: flex-start;
         }
-
-        .footer a {
-            color: #e5e7eb;
-            text-decoration: none;
-            border-bottom: 1px dotted rgba(148, 163, 184, 0.7);
-        }
-
-        .footer a:hover {
-            color: #f9fafb;
-            border-bottom-style: solid;
-        }
-
-        @media (max-width: 840px) {
-            .page {
-                border-radius: 20px;
-                padding: 22px 18px 18px;
-            }
-
-            .hero {
-                grid-template-columns: minmax(0, 1fr);
-                gap: 18px;
-            }
-
-            .docs-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 640px) {
-            body {
-                padding: 18px 10px;
-            }
-
-            .page {
-                padding: 18px 14px 14px;
-            }
-
-            .top-bar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .docs-grid {
-                grid-template-columns: minmax(0, 1fr);
-            }
-
-            .footer {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="page">
-        <div class="page-inner">
-            <header class="top-bar" aria-label="Better Self App legal navigation">
-                <div class="brand" id="brand">
-                    <div class="logo-wrap">
-                        <img src="img/logo.png" alt="Better Self App logo" class="logo" loading="lazy">
-                    </div>
-                    <div class="brand-text">
-                        <h1>Better Self App</h1>
-                        <p class="subtitle">Legal &amp; Policy Center</p>
-                    </div>
-                </div>
-                <div class="badge" aria-hidden="true">
-                    <span class="badge-dot"></span>
-                    <span>Updated Documentation</span>
-                </div>
-            </header>
+      <div class="page-inner">
+        <header class="top-bar" aria-label="Better Self App legal navigation">
+          <div class="brand" id="brand">
+            <div class="logo-wrap">
+              <img
+                src="img/logo.png"
+                alt="Better Self App logo"
+                class="logo"
+                loading="lazy"
+              />
+            </div>
+            <div class="brand-text">
+              <h1>Better Self App</h1>
+              <p class="subtitle">Legal &amp; Policy Center</p>
+            </div>
+          </div>
+          <div class="badge" aria-hidden="true">
+            <span class="badge-dot"></span>
+            <span>Updated Documentation</span>
+          </div>
+        </header>
 
-            <section class="hero">
-                <div class="intro">
-                    <h2>All of your public-facing legal documents, in one clean place.</h2>
-                    <div class="meta-row">
-                        <span class="chip"><span class="chip-dot"></span> Privacy-first experience</span>
-                    </div>
-                </div>
+        <section class="hero">
+          <div class="intro">
+            <h2>
+              All of your public-facing legal documents, in one clean place.
+            </h2>
+            <div class="meta-row">
+              <span class="chip"
+                ><span class="chip-dot"></span> Privacy-first experience</span
+              >
+            </div>
+          </div>
 
-                <aside class="panel" aria-label="What you&apos;ll find here">
-                    <h3>What&apos;s inside</h3>
-                    <p>Everything a user, reviewer, or partner needs to understand how Better Self App operates.</p>
-                    <ul>
-                        <li>Data usage, anonymization, and security guarantees.</li>
-                        <li>Terms that govern the app and its leaderboard features.</li>
-                        <li>Contest-specific rules for challenges and rewards.</li>
-                    </ul>
-                </aside>
-            </section>
+          <aside class="panel" aria-label="What you'll find here">
+            <h3>What&apos;s inside</h3>
+            <p>
+              Everything a user, reviewer, or partner needs to understand how
+              Better Self App operates.
+            </p>
+            <ul>
+              <li>Data usage, anonymization, and security guarantees.</li>
+              <li>Apple Health integration and health data handling.</li>
+              <li>Terms that govern the app and its leaderboard features.</li>
+              <li>Contest-specific rules for challenges and rewards.</li>
+            </ul>
+          </aside>
+        </section>
 
-            <section aria-label="Legal document menu">
-                <div class="docs-section-header">
-                    <h2>Documents</h2>
-                    <p class="docs-hint">Click any card below to open the full document.</p>
-                </div>
+        <section aria-label="Legal document menu">
+          <div class="docs-section-header">
+            <h2>Documents</h2>
+            <p class="docs-hint">
+              Click any card below to open the full document.
+            </p>
+          </div>
 
-                <nav class="docs-grid">
-                    <a class="doc-card" href="docs/privacy.html">
-                        <div>
-                            <p class="doc-kicker">Data &amp; privacy</p>
-                            <h3 class="doc-title">Privacy Policy</h3>
-                            <p class="doc-desc">How we handle activity data, photos, and leaderboard information.</p>
-                        </div>
-                        <div class="doc-meta">
-                            <span class="pill">Required for all users</span>
-                            <span class="arrow">↗</span>
-                        </div>
-                    </a>
+          <nav class="docs-grid">
+            <a class="doc-card" href="docs/privacy.html">
+              <div>
+                <p class="doc-kicker">Data &amp; privacy</p>
+                <h3 class="doc-title">Privacy Policy</h3>
+                <p class="doc-desc">
+                  How we handle activity data, photos, Apple Health data, and
+                  leaderboard information.
+                </p>
+              </div>
+              <div class="doc-meta">
+                <span class="pill">Required for all users</span>
+                <span class="arrow">↗</span>
+              </div>
+            </a>
 
-                    <a class="doc-card" href="docs/terms.html">
-                        <div>
-                            <p class="doc-kicker">Usage &amp; rights</p>
-                            <h3 class="doc-title">Terms &amp; Conditions</h3>
-                            <p class="doc-desc">The rules of using Better Self App and participating in the platform.</p>
-                        </div>
-                        <div class="doc-meta">
-                            <span class="pill">Legal backbone</span>
-                            <span class="arrow">↗</span>
-                        </div>
-                    </a>
+            <a class="doc-card" href="docs/terms.html">
+              <div>
+                <p class="doc-kicker">Usage &amp; rights</p>
+                <h3 class="doc-title">Terms &amp; Conditions</h3>
+                <p class="doc-desc">
+                  The rules of using Better Self App, Apple Health integration,
+                  and participating in the platform.
+                </p>
+              </div>
+              <div class="doc-meta">
+                <span class="pill">Legal backbone</span>
+                <span class="arrow">↗</span>
+              </div>
+            </a>
 
-                    <a class="doc-card" href="docs/contest-rules.html">
-                        <div>
-                            <p class="doc-kicker">Challenges</p>
-                            <h3 class="doc-title">Contest Rules</h3>
-                            <p class="doc-desc">Eligibility, scoring, and prize rules for Better Self challenges.</p>
-                        </div>
-                        <div class="doc-meta">
-                            <span class="pill">Promotions &amp; contests</span>
-                            <span class="arrow">↗</span>
-                        </div>
-                    </a>
-                </nav>
-            </section>
+            <a class="doc-card" href="docs/contest-rules.html">
+              <div>
+                <p class="doc-kicker">Challenges</p>
+                <h3 class="doc-title">Contest Rules</h3>
+                <p class="doc-desc">
+                  Eligibility, scoring, point system, and prize rules for Better
+                  Self challenges.
+                </p>
+              </div>
+              <div class="doc-meta">
+                <span class="pill">Promotions &amp; contests</span>
+                <span class="arrow">↗</span>
+              </div>
+            </a>
+          </nav>
+        </section>
 
-            <footer class="footer">
-                <span>&copy; <span id="year"></span> Better Self App. All rights reserved.</span>
-                <span>Questions? Email <a href="mailto:manuelondina87@gmail.com">manuelondina87@gmail.com</a></span>
-            </footer>
-        </div>
+        <footer class="footer">
+          <span
+            >&copy; <span id="year"></span> Better Self App. All rights
+            reserved.</span
+          >
+          <span
+            >Questions? Email
+            <a href="mailto:manuelondina87@gmail.com"
+              >manuelondina87@gmail.com</a
+            ></span
+          >
+        </footer>
+      </div>
     </div>
 
     <script>
-        (function () {
-            var yearEl = document.getElementById('year');
-            if (yearEl) {
-                yearEl.textContent = new Date().getFullYear();
-            }
+      (function () {
+        var yearEl = document.getElementById("year");
+        if (yearEl) {
+          yearEl.textContent = new Date().getFullYear();
+        }
 
-            var brand = document.getElementById('brand');
-            var logo = brand && brand.querySelector('.logo');
-            if (brand && logo) {
-                if (logo.complete && logo.naturalWidth > 0) {
-                    brand.classList.add('logo-loaded');
-                } else {
-                    logo.addEventListener('load', function () {
-                        if (logo.naturalWidth > 0) {
-                            brand.classList.add('logo-loaded');
-                        }
-                    });
-                }
-            }
-        })();
+        var brand = document.getElementById("brand");
+        var logo = brand && brand.querySelector(".logo");
+        if (brand && logo) {
+          if (logo.complete && logo.naturalWidth > 0) {
+            brand.classList.add("logo-loaded");
+          } else {
+            logo.addEventListener("load", function () {
+              if (logo.naturalWidth > 0) {
+                brand.classList.add("logo-loaded");
+              }
+            });
+          }
+        }
+      })();
     </script>
-</body>
+  </body>
 </html>
